@@ -7,12 +7,14 @@ import com.kafka.orderservice.feign.CatalogClient;
 import com.kafka.orderservice.feign.DeliveryClient;
 import com.kafka.orderservice.feign.PaymentClient;
 import com.kafka.orderservice.repository.OrderRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class OrderService {
 
     @Autowired
@@ -40,7 +42,7 @@ public class OrderService {
                 productId,
                 count,
                 OrderStatus.INITATTED,
-                null,
+                Long.parseLong(paymentMethod.get("id").toString()),
                 null
         );
         orderRepository.save(order);
@@ -61,7 +63,7 @@ public class OrderService {
 
         // 2. 결제
         // 2. 결제 수단 조회
-//        var paymentMethod = paymentClient.getPaymentMethod(order.userId);
+        var paymentMethod = paymentClient.getPaymentMethod(order.userId);
         var processPaymentDto = new ProcessPaymentDto();
         processPaymentDto.orderId = order.id;
         processPaymentDto.userId = order.userId;
@@ -80,6 +82,7 @@ public class OrderService {
         processDeliveryDto.address = address.get("address").toString();
 
         var delivery = deliveryClient.processDelivery(processDeliveryDto);
+        log.info(delivery.get("id").toString());
 
         // 4. 상품 재고 감소
         var decreaseStockCountDto = new DecreaseStockCountDto();

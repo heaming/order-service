@@ -15,7 +15,7 @@ public interface CatalogClient {
     @GetMapping("/catalog/product/{productId}")
     Map<String, Object> getProduct(@PathVariable Long productId);
 
-    @PostMapping("/catalog/proudct/{productId}/stock-count")
+    @PostMapping("/catalog/product/{productId}/stock-count")
     void decreaseStockCount(@PathVariable Long productId, @RequestBody DecreaseStockCountDto request);
 
 }
