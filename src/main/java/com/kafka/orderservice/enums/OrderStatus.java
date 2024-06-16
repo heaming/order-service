@@ -2,6 +2,6 @@ package com.kafka.orderservice.enums;
 
 public enum OrderStatus {
     INITATTED,
-    PAYMENT_COMPLETED,
+    PAYMENT_REQUESTED,
     DELIVERY_REQUESTED
 }
