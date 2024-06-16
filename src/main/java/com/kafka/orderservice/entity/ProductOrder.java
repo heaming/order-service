@@ -20,13 +20,15 @@ public class ProductOrder {
     public OrderStatus orderStatus;
     public Long paymentId;
     public Long deliveryId;
+    public String deliveryAddress;
 
-    public ProductOrder(Long userId, Long productId, Long count, OrderStatus orderStatus, Long paymentId, Long deliveryId) {
+    public ProductOrder(Long userId, Long productId, Long count, OrderStatus orderStatus, Long paymentId, Long deliveryId, String deliveryAddress) {
         this.userId = userId;
         this.productId = productId;
         this.count = count;
         this.orderStatus = orderStatus;
         this.paymentId = paymentId;
         this.deliveryId = deliveryId;
+        this.deliveryAddress = deliveryAddress;
     }
 }
