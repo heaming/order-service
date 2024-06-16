@@ -13,9 +13,10 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+## test 위한 주석 처리
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
   kafka:
     bootstrap-servers:
       - kafka1:9092

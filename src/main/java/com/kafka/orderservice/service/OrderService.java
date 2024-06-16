@@ -47,7 +47,7 @@ public class OrderService {
                 productId,
                 count,
                 OrderStatus.INITATTED,
-                Long.parseLong(paymentMethod.get("id").toString()),
+                null, // Long.parseLong(paymentMethod.get("id").toString()),
                 null,
                 null
         );
